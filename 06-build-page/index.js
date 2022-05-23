@@ -52,6 +52,7 @@ fs.mkdir(path.join(__dirname, 'project-dist', 'assets'), { recursive: true }, (e
 
 const createlHtml = fs.createReadStream(path.join(__dirname, 'template.html'),'utf-8');  
 createlHtml.on('data', data => {
+  fs.unlink(path.join(__dirname, 'project-dist', 'index.html'), () => {});
   fs.readdir(path.join(__dirname, 'components'), (err, files) => {
     for (let i = 0; i < files.length; i++) {
       let componentsHtml = fs.createReadStream(path.join(__dirname, 'components', files[i]), 'utf-8');
